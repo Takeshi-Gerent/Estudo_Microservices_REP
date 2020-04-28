@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CompanyService.Api.Commands;
+using CompanyService.Api.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,17 +14,24 @@ namespace CompanyService.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly IMediator bus;
+        private readonly IMediator mediator;
 
-        public CompanyController(IMediator bus)
+        public CompanyController(IMediator mediator)
         {
-            this.bus = bus;
+            this.mediator = mediator;
         }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateCompanyCommand command)
         {
-            var result = await bus.Send(command);
+            var result = await mediator.Send(command);
+            return new JsonResult(result);
+        }
+
+        [HttpGet()]
+        public async Task<ActionResult> FindByCode([FromQuery]int codeType, string code)
+        {
+            var result = await mediator.Send(new FindCompanyByCodeQuery { CodeType = (Api.Queries.CompanyCodeType)codeType, Code = code });
             return new JsonResult(result);
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using EmployeeService.Api.Queries;
+using EmployeeService.Api.Commands;
 
 namespace EmployeeService.Controllers
 {
@@ -25,6 +26,13 @@ namespace EmployeeService.Controllers
         public async Task<ActionResult> GetByPis([FromRoute]string pis)
         {
             var result = await mediator.Send(new FindEmployeeByPisQuery { Pis = pis });
+            return new JsonResult(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] CreateEmployeeCommand command)
+        {
+            var result = await mediator.Send(command);
             return new JsonResult(result);
         }
     }

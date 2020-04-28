@@ -14,18 +14,22 @@ namespace EmployeeService.DataAccess.EF
         { }
 
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Company> Companies { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.EnableSensitiveDataLogging();
+            optionsBuilder.EnableSensitiveDataLogging();            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EmployeeConfig());
 
+
+            modelBuilder.Entity<Company>().ToTable("Company");
+            modelBuilder.Entity<Company>().HasMany(p => p.Employees).WithOne(p => p.Company);
             modelBuilder.Entity<Company>().HasKey("Id");
+            
         }
     }
 }

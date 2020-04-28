@@ -8,22 +8,18 @@ namespace EmployeeService.Domain
     public class Company
     {
         public int Id { get; private set; }
-        public CompanyCodeType CodeType { get; private set; }
-        public string Code { get; private set; }
 
         public IList<Employee> Employees { get; private set; }
 
-        public Company(int id,CompanyCodeType codeType, string code)
+        private Company(int id)
         {
             Id = id;
-            CodeType = codeType;
-            Code = code;
+        }
+
+        public static Company FromId(int id)
+        {
+            return new Company(id);
         }
     }
 
-    public enum CompanyCodeType
-    {
-        CNPJ,
-        CEI
-    }
 }

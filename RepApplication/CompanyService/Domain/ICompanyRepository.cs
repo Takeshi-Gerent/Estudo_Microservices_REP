@@ -8,5 +8,6 @@ namespace CompanyService.Domain
     public interface ICompanyRepository
     {
         void Add(Company company);
+        Task<Company> WithCode(CompanyCodeType codeType, string code);
     }
 }

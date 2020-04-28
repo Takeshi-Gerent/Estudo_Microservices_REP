@@ -34,5 +34,6 @@ namespace CompanyService.Domain
             Code = code;
             Address = address;
         }
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using EmployeeService.DataAccess.EF;
+using EmployeeService.RestClients;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Steeltoe.Discovery.Client;
 
 namespace EmployeeService
 {
@@ -28,8 +30,10 @@ namespace EmployeeService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDiscoveryClient(Configuration);
             services.AddControllers();
             services.AddEFConfiguration(Configuration);
+            services.AddCompanyRestClient();
             services.AddMvc()
                     .AddNewtonsoftJson()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

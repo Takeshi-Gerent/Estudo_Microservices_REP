@@ -1,5 +1,6 @@
 ﻿using CompanyService.Domain;
 using NHibernate;
+using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,11 @@ namespace CompanyService.DataAccess.NHibernate
         {
             session.Save(company);
         }
+
+        public async Task<Company> WithCode(CompanyCodeType codeType, string code)
+        {
+            return await session.Query<Company>().FirstOrDefaultAsync(p => p.CodeType == codeType && p.Code == code);
+        }
+        
     }
 }

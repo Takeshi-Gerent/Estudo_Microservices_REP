@@ -11,7 +11,7 @@ namespace EmployeeService.Test.Domain
         [Fact]
         public void New()
         {
-            var employee = Employee.New("Fulano da Silva", "12134112", new Company(1, CompanyCodeType.CNPJ, "000001"));
+            var employee = Employee.New("Fulano da Silva", "12134112", Company.FromId(1);
 
             Assert.Equal("Fulano da Silva", employee.Name);
             Assert.Equal("12134112", employee.Pis);

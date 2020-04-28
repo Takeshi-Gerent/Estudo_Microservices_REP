@@ -17,8 +17,10 @@ namespace EmployeeService.DataAccess.EF
         }
 
         public async Task<Employee> Add(Employee employee)
-        {
+        {            
             await employeeDbContext.Employees.AddAsync(employee);
+            employeeDbContext.Entry(employee.Company).State = EntityState.Unchanged;
+            await employeeDbContext.SaveChangesAsync();
             return employee;
         }
 
