@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using EmployeeService.DataAccess.EF;
-using EmployeeService.RestClients;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +32,6 @@ namespace EmployeeService
             //services.AddDiscoveryClient(Configuration);
             services.AddControllers();
             services.AddEFConfiguration(Configuration);
-            services.AddCompanyRestClient();
             services.AddMvc()
                     .AddNewtonsoftJson()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

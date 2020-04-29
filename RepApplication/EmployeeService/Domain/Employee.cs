@@ -15,16 +15,26 @@ namespace EmployeeService.Domain
         private Employee()
         { }
 
-        private Employee(string name, string pis, Company company)
+        private Employee(string name, string pis)
         {
             Name = name;
             Pis = pis;
-            Company = company;
         }
 
         public static Employee New(string name, string pis, Company company)
         {
-            return new Employee(name, pis, company);
+            var employee = new Employee(name, pis);
+            employee.SetCompany(company);
+            return employee;
+        }
+
+        private void SetCompany(Company company)
+        {
+            if (company == null)
+            {
+                throw new ArgumentException("Compania não pode ser nula.");
+            }
+            Company = company;
         }
 
     }

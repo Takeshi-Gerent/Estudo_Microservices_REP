@@ -29,6 +29,11 @@ namespace EmployeeService.Controllers
             return new JsonResult(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateEmployeeCommand command)
         {

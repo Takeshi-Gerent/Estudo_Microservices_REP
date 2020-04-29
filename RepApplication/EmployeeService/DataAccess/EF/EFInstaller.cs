@@ -19,6 +19,7 @@ namespace EmployeeService.DataAccess.EF
             });
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             return services;
         }
     }

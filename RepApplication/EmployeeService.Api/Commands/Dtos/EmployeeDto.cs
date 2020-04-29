@@ -8,7 +8,7 @@ namespace EmployeeService.Api.Commands.Dtos
     {
         public string Name { get; set; }
         public string Pis { get; set; }
-        public int CompanyCodeType { get; set; }
+        public string CompanyCodeType { get; set; }
         public string CompanyCode { get; set; }
     }
 }
