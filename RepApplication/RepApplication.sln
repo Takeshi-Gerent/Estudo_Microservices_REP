@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService", "CompanyService\CompanyService.csproj", "{DFF1E776-1A20-4C3D-B274-A562BE3E8458}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyService", "CompanyService\CompanyService.csproj", "{DFF1E776-1A20-4C3D-B274-A562BE3E8458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService.Api", "CompanyService.Api\CompanyService.Api.csproj", "{9003BBFF-DF19-4661-A3A8-7AFDA3BBC70B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyService.Api", "CompanyService.Api\CompanyService.Api.csproj", "{9003BBFF-DF19-4661-A3A8-7AFDA3BBC70B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService.Test", "CompanyService.Test\CompanyService.Test.csproj", "{C1F8A657-DBB3-412F-A7EF-B7146ED17A66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyService.Test", "CompanyService.Test\CompanyService.Test.csproj", "{C1F8A657-DBB3-412F-A7EF-B7146ED17A66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService.Api", "EmployeeService.Api\EmployeeService.Api.csproj", "{590DA104-A2D4-41CE-8F21-569631F5881A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService.Api", "EmployeeService.Api\EmployeeService.Api.csproj", "{590DA104-A2D4-41CE-8F21-569631F5881A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{6823AD00-0A1A-4E6B-A74A-59FF8D78278A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{6823AD00-0A1A-4E6B-A74A-59FF8D78278A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService.Test", "EmployeeService.Test\EmployeeService.Test.csproj", "{DE93F5E5-AD47-4975-94F5-9B6137637A76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService.Test", "EmployeeService.Test\EmployeeService.Test.csproj", "{DE93F5E5-AD47-4975-94F5-9B6137637A76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordService.Api", "RecordService.Api\RecordService.Api.csproj", "{0D02DC57-38F2-49BA-AB7E-13BD1D078D91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordService", "RecordService\RecordService.csproj", "{8A69C614-E6A9-40E3-ABCF-DC78ACCF198D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{DE93F5E5-AD47-4975-94F5-9B6137637A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE93F5E5-AD47-4975-94F5-9B6137637A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE93F5E5-AD47-4975-94F5-9B6137637A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D02DC57-38F2-49BA-AB7E-13BD1D078D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D02DC57-38F2-49BA-AB7E-13BD1D078D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D02DC57-38F2-49BA-AB7E-13BD1D078D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D02DC57-38F2-49BA-AB7E-13BD1D078D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A69C614-E6A9-40E3-ABCF-DC78ACCF198D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A69C614-E6A9-40E3-ABCF-DC78ACCF198D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A69C614-E6A9-40E3-ABCF-DC78ACCF198D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A69C614-E6A9-40E3-ABCF-DC78ACCF198D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
