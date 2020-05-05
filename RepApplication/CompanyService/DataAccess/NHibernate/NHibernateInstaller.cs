@@ -36,7 +36,7 @@ namespace CompanyService.DataAccess.NHibernate
 
             configuration.DataBaseIntegration(db =>
             {
-                db.Dialect<MsSql2008Dialect>();
+                db.Dialect<MsSql2012Dialect>();
                 db.Driver<SqlClientDriver>();
                 db.ConnectionProvider<DriverConnectionProvider>();
                 db.BatchSize = 500;
@@ -49,11 +49,18 @@ namespace CompanyService.DataAccess.NHibernate
 
             configuration.Proxy(p => new StaticProxyFactoryFactory());
             configuration.Cache(c => c.UseQueryCache = false);
-            configuration.AddAssembly(typeof(NHibernateInstaller).Assembly);            
+            configuration.AddAssembly(typeof(NHibernateInstaller).Assembly);
 
-            services.AddSingleton(Fluently.Configure(configuration).Mappings(m => m.FluentMappings.Add<CompanyMap>()).BuildSessionFactory());
-            services.AddScoped(s => s.GetService<ISessionFactory>().OpenSession());
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            try
+            {
+                services.AddSingleton(Fluently.Configure(configuration).Mappings(m => m.FluentMappings.Add<CompanyMap>()).BuildSessionFactory());
+                services.AddScoped(s => s.GetService<ISessionFactory>().OpenSession());
+                services.AddScoped<IUnitOfWork, UnitOfWork>();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(connectionString, e);
+            }
             return services;
         }
     }

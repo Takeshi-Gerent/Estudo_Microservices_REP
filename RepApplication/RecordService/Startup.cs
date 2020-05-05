@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RecordService.DataAccess.NHibernate;
+using Steeltoe.Discovery.Client;
 
 namespace RecordService
 {
@@ -28,6 +29,7 @@ namespace RecordService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDiscoveryClient(Configuration);            
             services.AddMvc().AddNewtonsoftJson().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddNHibernate(Configuration.GetConnectionString("DefaultConnection"));
@@ -61,12 +63,14 @@ namespace RecordService
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "API 1");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "info";
             });
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseDiscoveryClient();
 
             app.UseEndpoints(endpoints =>
             {

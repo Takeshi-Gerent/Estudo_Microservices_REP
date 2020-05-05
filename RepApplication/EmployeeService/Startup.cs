@@ -29,7 +29,7 @@ namespace EmployeeService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDiscoveryClient(Configuration);
+            services.AddDiscoveryClient(Configuration);
             services.AddControllers();
             services.AddEFConfiguration(Configuration);
             services.AddMvc()
@@ -67,12 +67,13 @@ namespace EmployeeService
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "API 1");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "info";
             });
 
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseDiscoveryClient();
 
             app.UseEndpoints(endpoints =>
             {

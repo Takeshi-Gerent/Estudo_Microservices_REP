@@ -6,20 +6,18 @@ ENV APP_HOME /src
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-COPY ["CompanyService/*.csproj", "$APP_HOME/CompanyService/"]
-COPY ["CompanyService.Api/*.csproj", "$APP_HOME/CompanyService.Api/"]
-RUN cd $APP_HOME/CompanyService && dotnet restore
+COPY ["RepApplication.Api.Gateway/*.csproj", "$APP_HOME/"]
+RUN cd $APP_HOME && dotnet restore
 
-COPY ["CompanyService", "$APP_HOME/CompanyService/"]
-COPY ["CompanyService.Api", "$APP_HOME/CompanyService.Api/"]
-RUN cd $APP_HOME/CompanyService && dotnet build
+COPY ["RepApplication.Api.Gateway", "$APP_HOME/"]
+RUN cd $APP_HOME && dotnet build
 
 FROM build AS publish
-WORKDIR $APP_HOME/CompanyService
+WORKDIR $APP_HOME
 RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-ENV ASPNETCORE_URLS=http://+:5030
+ENV ASPNETCORE_URLS=http://+:5020
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CompanyService.dll"]
+ENTRYPOINT ["dotnet", "RepApplication.Api.Gateway.dll"]

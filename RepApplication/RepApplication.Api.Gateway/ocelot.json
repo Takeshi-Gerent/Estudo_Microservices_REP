@@ -1,0 +1,49 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/Company",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/Company",
+      "ServiceName": "CompanyService",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "FileCacheOptions": { "TtlSeconds": 15 }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Employee",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Employee",
+      "ServiceName": "EmployeeService",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurity",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Record",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Record",
+      "ServiceName": "RecordService",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiSecurity",
+        "AllowedScopes": []
+      }
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Type": "Eureka",
+      "Host": "eureka-server",
+      "Port": "8761"
+    }
+  }
+}

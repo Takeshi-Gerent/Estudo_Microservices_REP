@@ -20,15 +20,27 @@ namespace CompanyService
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            var config = new ConfigurationBuilder()
+            /*
+            var config = new ConfigurationBuilder()                
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("hosting.json", optional: true)
                 .AddJsonFile("appsettings.json", optional: true)
+                .AddJsonFile($"appsettings.{HostingEnvironment.EnvironmentName}.json", true, true)
                 .AddCommandLine(args)
                 .Build();
+            */
 
             return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(config)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("hosting.json", optional: true)
+                        .AddJsonFile("appsettings.json", optional: true)
+                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                        .AddCommandLine(args)
+                        .Build();
+                })
                 .UseStartup<Startup>();
                 
         }

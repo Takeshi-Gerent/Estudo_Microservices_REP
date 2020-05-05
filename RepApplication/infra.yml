@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+      
+  eureka:
+    build: eureka-server
+    image: eureka-server
+    container_name: eureka-server
+    ports:
+      - 8761:8761   
+    networks:
+      - repappnetwork
+      
+  ms-sql-server:
+    container_name: ms-sql-server
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - mssql-server-linux-data:/e/mssql/data
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pass1234"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    networks:
+      - repappnetwork
+      
+volumes:
+  mssql-server-linux-data:
+  
+networks:
+  repappnetwork:
